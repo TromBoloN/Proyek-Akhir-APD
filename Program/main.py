@@ -1,5 +1,5 @@
 import os
-from data import users
+from data import user
 from auth import login
 from mods import menu_mod
 os.system('cls')
@@ -13,7 +13,8 @@ while True:
     pilihanMenu = input("Pilih menu (1/2/3): ")
     
     if pilihanMenu == '1':
-        usernameLogin, roleLogin = login(users)
+        login()
+        usernameLogin, roleLogin = login()
         while True:
             os.system('cls')
             if roleLogin == 'superadmin':
