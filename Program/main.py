@@ -27,7 +27,7 @@ while True:
                     input("Tekan Enter untuk melanjutkan...")
                     continue
                 elif pilihanSuperAdmin == '2':
-                    menu_mod(usernameLogin, users)
+                    menu_mod(usernameLogin, user)
                 elif pilihanSuperAdmin == '3':
                     break
             elif roleLogin == 'admin':
@@ -35,7 +35,7 @@ while True:
                 input("Tekan Enter untuk melanjutkan...")
                 continue
             elif roleLogin == 'user':
-                menu_mod(usernameLogin, users)
+                menu_mod(usernameLogin, user)
             else:
               print("Role tidak dikenali.")
               break
