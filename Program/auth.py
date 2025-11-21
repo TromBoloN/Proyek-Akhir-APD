@@ -2,7 +2,7 @@
 
 from data import user
 
-def login():
+def login(user):
     print("=== Login ===")
     username = input("Masukkan username: ")
     password = input("Masukkan password: ")
@@ -14,7 +14,7 @@ def login():
         print("Username atau password salah.")
         return None, None
     
-def register():
+def register(user):
     print("=== Register ===")
     username = input("Masukkan username baru: ")
 
