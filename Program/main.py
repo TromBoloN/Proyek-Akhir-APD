@@ -1,6 +1,6 @@
 import os
 from data import user
-from auth import login
+from auth import login, register
 from mods import menu_mod
 os.system('cls')
 
@@ -13,7 +13,6 @@ while True:
     pilihanMenu = input("Pilih menu (1/2/3): ")
     
     if pilihanMenu == '1':
-        login()
         usernameLogin, roleLogin = login()
         while True:
             os.system('cls')
