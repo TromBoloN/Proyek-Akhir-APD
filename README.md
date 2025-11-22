@@ -4,38 +4,6 @@ Repositori ini merupakan tempat pengumpulan **Program**, **Flowchart**, dan **La
 
 ---
 
-## 📁 Struktur Folder
-
-<pre>
-📦 Proyek-Akhir-APD
-│
-├── 📁 Program
-│   └── (kode sumber dan dokumentasi program)
-│
-├── 📁 Flowchart
-│   └── (diagram alur logika sistem)
-│
-├── 📁 Laporan
-│   └── (laporan akhir dalam format PDF/DOCX)
-│
-└── 📄 README.md
-</pre>
-
----
-
-## 📂 Deskripsi Folder
-
-- **Program/**  
-  Berisi file kode sumber, skrip, dan dokumentasi teknis dari sistem yang dikembangkan.  
-
-- **Flowchart/**  
-  Berisi diagram alur (flowchart) yang menggambarkan logika dan proses kerja sistem.  
-
-- **Laporan/**  
-  Berisi laporan akhir proyek, mencakup latar belakang, perancangan, implementasi, serta kesimpulan.  
-
----
-
 ## 👥 Anggota Kelompok
 
 | Nama                      | NIM         |

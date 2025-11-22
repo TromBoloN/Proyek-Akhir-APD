@@ -5,7 +5,7 @@ def menu_akun(usernameLogin, users):
     role_login = users[usernameLogin]["role"]
 
     while True:
-        clear()  # <-- ALWAYS CLEAR AT TOP OF LOOP
+        clear()
         print("=== MANAJEMEN AKUN ===")
         print("1. Lihat daftar user")
         print("2. Tambah user baru")
