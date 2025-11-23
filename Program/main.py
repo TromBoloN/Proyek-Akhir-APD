@@ -1,4 +1,4 @@
-import os
+from InquirerPy import inquirer
 from data import user
 from auth import login, register
 from mods import menu_mod
@@ -8,22 +8,25 @@ from utils import clear
 
 while True:
     clear()
-    print("=== Menu Utama ===")
-    print("1. Login")
-    print("2. Register")
-    print("3. Keluar")
-    pilihanMenu = input("Pilih menu (1/2/3): ").strip()
+    pilihanMenu = inquirer.select(message="=== MENU UTAMA ===",
+                                choices=["Login", 
+                                        "Register",
+                                        "Keluar",],
+                                pointer="👉",
+                                qmark=" ",
+                                amark=" "
+                                ).execute()
 
-    if pilihanMenu == "2":
-        register()
+    if pilihanMenu == "Register":
+        register(user)
         input("Tekan Enter untuk kembali...")
         continue
 
-    if pilihanMenu == "3":
+    if pilihanMenu == "Keluar":
         print("Terima kasih telah menggunakan program ini.")
         break
 
-    if pilihanMenu == "1":
+    if pilihanMenu == "Login":
         hasiLogin = login(user)
         if not hasiLogin:
             input("Login gagal. Tekan Enter...")
@@ -33,72 +36,92 @@ while True:
             clear()
 
             if roleLogin == "superadmin":
-                print("=== MENU SUPERADMIN ===")
-                print("1. Menu Akun")
-                print("2. Menu Mod")
-                print("3. Logout")
+                pilihSA = inquirer.select(message="=== MENU SUPERADMIN ===",
+                                            choices=["Menu Akun", 
+                                                    "Menu Mod",
+                                                    "Logout",],
+                                            pointer="👉",
+                                            qmark=" ",
+                                            amark=" "
+                                            ).execute()
 
-                pilihSA = input("Pilih menu: ").strip()
-
-                if pilihSA == "1":
+                if pilihSA == "Menu Akun":
                     menu_akun(usernameLogin, user)
-                    input("Tekan Enter...")
                     continue
-                elif pilihSA == "2":
+                elif pilihSA == "Menu Mod":
                     menu_mod(usernameLogin, user)
                     continue
-                elif pilihSA == "3":
-                    print("Logout berhasil.")
-                    break 
-                else:
-                    print("Pilihan tidak valid.")
-                    input("Enter...")
-                    continue
+                elif pilihSA == "Logout":
+                    konfirmasi = inquirer.select(message="Yakin ingin Logout?",
+                                                choices=["YA", "TIDAK"],
+                                                pointer="👉",
+                                                qmark="❓",
+                                                amark="☑️"
+                                                ).execute()
+                    if konfirmasi == "YA":
+                        print("Logout berhasil.")
+                        break
+                    else:
+                        print("Logout dibatalkan")
+                        input("Enter...")
 
             elif roleLogin == "admin":
-                print("=== MENU ADMIN ===")
-                print("1. Menu Akun")
-                print("2. Logout")
-                pilihanA = input("Pilih menu: ").strip()
+                pilihanA = inquirer.select(message="=== MENU ADMIN ===",
+                                            choices=["Menu Akun", 
+                                                    "Logout",
+                                                    ],
+                                            pointer="👉",
+                                            qmark=" ",
+                                            amark=" "
+                                            ).execute()
 
-                if pilihanA == "1":
+                if pilihanA == "Menu Akun":
                     menu_akun(usernameLogin, user)
                     continue
                     
-                elif pilihanA == "2":
-                    print("Logout berhasil.")
-                    break
-
-                else:
-                    input("Pilihan tidak valid. Tekan enter...")
-                    continue
+                elif pilihanA == "Logout":
+                    konfirmasi = inquirer.select(message="Yakin ingin Logout?",
+                                                choices=["YA", "TIDAK"],
+                                                pointer="👉",
+                                                qmark="❓",
+                                                amark=" "
+                                                ).execute()
+                    if konfirmasi == "YA":
+                        print("Logout berhasil.")
+                        break
+                    else:
+                        print("Logout dibatalkan")
+                        input("Enter...")
 
             elif roleLogin == "user":
-                print("=== MENU USER ===")
-                print("1. Menu Mod ")
-                print("2. Logout")
+                pilihanU = inquirer.select(message="=== MENU USER ===",
+                                            choices=["Menu Mod", 
+                                                    "Logout",
+                                                    ],
+                                            pointer="👉",
+                                            qmark=" ",
+                                            amark=" "
+                                            ).execute()
 
-                pilihanU = input("Pilih menu: ").strip()
-
-                if pilihanU == "1":
+                if pilihanU == "Menu Mod":
                     menu_mod(usernameLogin, user)
                     continue
 
-                elif pilihanU == "2":
-                    print("Logout berhasil.")
-                    break
-
-                else:
-                    print("Pilihan tidak valid.")
-                    input("Enter...")
-                    continue
+                elif pilihanU == "Logout":
+                    konfirmasi = inquirer.select(message="Yakin ingin Logout?",
+                                                choices=["YA", "TIDAK"],
+                                                pointer="👉",
+                                                qmark="❓",
+                                                amark=" "
+                                                ).execute()
+                    if konfirmasi == "YA":
+                        print("Logout berhasil.")
+                        break
+                    else:
+                        print("Logout dibatalkan")
+                        input("Enter...")
 
             else:
                 print("Role tidak dikenali!")
                 input("Tekan Enter...")
                 break
-
-    else:
-        print("Pilihan tidak valid.")
-        input("Tekan Enter...")
-        continue

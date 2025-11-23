@@ -1,4 +1,5 @@
 from prettytable import PrettyTable
+from InquirerPy import inquirer
 from utils import clear
 
 def menu_akun(usernameLogin, users):
@@ -6,15 +7,18 @@ def menu_akun(usernameLogin, users):
 
     while True:
         clear()
-        print("=== MANAJEMEN AKUN ===")
-        print("1. Lihat daftar user")
-        print("2. Tambah user baru")
-        print("3. Edit user")
-        print("4. Hapus user")
-        print("5. Kembali")
-        pilihan = input("Pilih menu: ")
+        menu_akun = inquirer.select(message="=== MANAJEMEN AKUN ===",
+                                    choices=["Lihat daftar user", 
+                                            "Tambah user baru",
+                                            "Edit user",
+                                            "Hapus user",
+                                            "Kembali"],
+                                    pointer="👉",
+                                    qmark=" ",
+                                    amark=" "
+                                    ).execute()
 
-        if pilihan == "1":
+        if menu_akun == "Lihat daftar user":
             clear()  
             print("\n=== LIST USER ===")
             tabel = PrettyTable()
@@ -22,24 +26,38 @@ def menu_akun(usernameLogin, users):
             for username, data in users.items():
                 tabel.add_row([username, data["password"], data["role"]])
             print(tabel)
-            input("\nTekan Enter untuk kembali...")
+            input("\nEnter...")
 
-        elif pilihan == "2":
+        elif menu_akun == "Tambah user baru":
             clear()
             print("\n=== TAMBAH USER ===")
-            usn_baru = input("Masukkan username baru: ")
+            usn_baru = inquirer.text(
+                            message="Masukkan Username baru: ",
+                            qmark="📝",
+                            amark="📝"
+                            ).execute()
             if usn_baru in users:
                 print("User sudah ada!")
-                input("Tekan Enter...")
+                input("\nEnter...")
                 continue
 
-            pw_baru = input("Masukkan password: ")
+            pw_baru = inquirer.secret(
+                            message="Masukkan Password baru: ",
+                            qmark="📝",
+                            amark="📝"
+                            ).execute()
 
             if role_login == "admin":
                 role_baru = "user"
                 print("Role otomatis: user")
             else:
-                role_baru = input("Role baru (user/admin/superadmin): ")
+                role_baru = inquirer.select(
+                            message="Masukkan role (superadmin/admin/user): ",
+                            choices=["superadmin", "admin", "user"],
+                            pointer="👉",
+                            qmark="📝",
+                            amark="📝"
+                            ).execute()
 
             users[usn_baru] = {
                 "password": pw_baru,
@@ -47,26 +65,41 @@ def menu_akun(usernameLogin, users):
                 "mods": {}
             }
             print("User berhasil dibuat!")
-            input("Tekan Enter...")
+            input("\nEnter...")
 
-        elif pilihan == "3":
+        elif menu_akun == "Edit user":
             clear()
-            print("\n=== EDIT USER ===")
+            print("\n=== EDIT USER ===" "\n")
+            tabel = PrettyTable()
+            tabel.field_names = ["Username", "Password", "Role"]
+            for username, data in users.items():
+                tabel.add_row([username, data["password"], data["role"]])
+            print(tabel)
 
-            usn_edit = input("Masukkan username yang ingin diedit: ")
+            usn_edit = input("\nMasukkan username yang ingin diedit: ")
             if usn_edit not in users:
                 print("User tidak ditemukan!")
-                input("Enter...")
+                input("\nEnter...")
                 continue
 
             if role_login == "admin" and users[usn_edit]["role"] != "user":
                 print("Admin tidak dapat edit user non-user!")
-                input("Enter...")
+                input("\nEnter...")
                 continue
 
             print("Kosongkan untuk tidak mengubah.")
-            pw_edit = input("Password baru: ")
-            role_edit = input("Role baru (opsional): ") if role_login == "superadmin" else None
+            pw_edit = inquirer.secret(
+                            message="Masukkan Password baru: ",
+                            qmark="📝",
+                            amark="📝"
+                            ).execute()
+            role_edit = inquirer.select(
+                            message="Masukkan role (superadmin/admin/user): ",
+                            choices=["Superadmin", "Admin", "User"],
+                            pointer="👉",
+                            qmark="📝",
+                            amark="📝"
+                            ).execute() if role_login == "superadmin" else None
 
             if pw_edit:
                 users[usn_edit]["password"] = pw_edit
@@ -74,34 +107,46 @@ def menu_akun(usernameLogin, users):
                 users[usn_edit]["role"] = role_edit
 
             print("User berhasil diperbarui!")
-            input("Enter...")
+            input("\nEnter...")
 
-        elif pilihan == "4":
+        elif menu_akun == "Hapus user":
             clear()
-            print("\n=== HAPUS USER ===")
+            print("\n=== HAPUS USER ===" "\n")
+            tabel = PrettyTable()
+            tabel.field_names = ["Username", "Password", "Role"]
+            for username, data in users.items():
+                tabel.add_row([username, data["password"], data["role"]])
+            print(tabel)
 
-            user_hapus = input("Masukkan username yang ingin dihapus: ")
+            user_hapus = inquirer.text(
+                            message="Masukkan Username: ",
+                            qmark=" ",
+                            amark=" "
+                            ).execute()
             if user_hapus not in users:
                 print("User tidak ditemukan!")
-                input("Enter...")
+                input("\nEnter...")
                 continue
 
             if role_login == "admin" and users[user_hapus]["role"] != "user":
-                print("Admin tidak boleh hapus user non-user!")
-                input("Enter...")
+                print("Admin tidak dapat menghapus user non-user!")
+                input("\nEnter...")
                 continue
 
-            konfirmasi = input(f"Yakin ingin menghapus {user_hapus}? (y/n): ")
-            if konfirmasi.lower() == "y":
+            konfirmasi = inquirer.select(message="Yakin ingin Mengapus User?",
+                                                choices=["YA", "TIDAK"],
+                                                pointer="👉",
+                                                qmark="❓",
+                                                amark=" "
+                                                ).execute()
+            if konfirmasi == "YA":
                 del users[user_hapus]
-                print("User berhasil dihapus!")
+                print("User berhasil dihapus.")
+                input("\nEnter...")
             else:
                 print("Dibatalkan.")
-            input("Enter...")
+                input("\nEnter...")
 
-        elif pilihan == "5":
+        elif menu_akun == "Kembali":
             break
 
-        else:
-            print("Pilihan tidak valid!")
-            input("Enter...")
