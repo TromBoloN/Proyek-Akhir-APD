@@ -1,5 +1,5 @@
 from prettytable import PrettyTable
-from utils import clear
+from utils import clear, catat_log
 
 
 def tableMod(mods):
@@ -44,6 +44,7 @@ def menu_mod(usernameLogin, users):
             if pilihan == "1":
                 clear()
                 tableMod(users[usernameLogin]["mods"])
+                catat_log(usernameLogin, "Melihat daftar mod", "-")
                 input("\nTekan Enter untuk kembali...")
 
             elif pilihan == "2":
@@ -75,6 +76,7 @@ def menu_mod(usernameLogin, users):
                         "deskripsi": deskripsi or "-",
                         "review": review or "-"
                     }
+                    catat_log(usernameLogin, "Menambah mod", nama_mod)
 
                     print("Mod berhasil ditambahkan!")
                     input("Tekan Enter...")
@@ -112,6 +114,7 @@ def menu_mod(usernameLogin, users):
                         "review": review
                     }
 
+                    catat_log(usernameLogin, "Mengedit mod", nama_mod)
                     print("Mod berhasil diperbarui!")
                     input("Tekan Enter...")
 
@@ -130,6 +133,7 @@ def menu_mod(usernameLogin, users):
                 else:
                     try:
                         del users[usernameLogin]["mods"][nama_mod]
+                        catat_log(usernameLogin, "Menghapus mod", nama_mod)
                         print("Mod berhasil dihapus!")
                     except Exception as e:
                         print("Gagal menghapus mod:", e)

@@ -3,7 +3,7 @@ from data import user
 from auth import login, register
 from mods import menu_mod
 from akun import menu_akun
-from utils import clear
+from utils import clear, tampilkan_log
 
 
 while True:
@@ -28,7 +28,7 @@ while True:
 
     if pilihanMenu == "Login":
         hasiLogin = login(user)
-        if not hasiLogin:
+        if hasiLogin[0] is None:
             input("Login gagal. Tekan Enter...")
             continue
         usernameLogin, roleLogin = hasiLogin
@@ -39,6 +39,7 @@ while True:
                 pilihSA = inquirer.select(message="=== MENU SUPERADMIN ===",
                                             choices=["Menu Akun", 
                                                     "Menu Mod",
+                                                    "Log Aktivitas",
                                                     "Logout",],
                                             pointer="👉",
                                             qmark=" ",
@@ -50,6 +51,10 @@ while True:
                     continue
                 elif pilihSA == "Menu Mod":
                     menu_mod(usernameLogin, user)
+                    continue
+                elif pilihSA == "Log Aktivitas":
+                    tampilkan_log()
+                    input("Enter...")
                     continue
                 elif pilihSA == "Logout":
                     konfirmasi = inquirer.select(message="Yakin ingin Logout?",

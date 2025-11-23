@@ -1,57 +1,54 @@
 # Login Function (Ghina)
-from InquirerPy import inquirer
+
 from data import user
 
 def login(user):
-    print("=== Login ===")
-    username = inquirer.text(
-                            message="Masukkan Username: ",
-                            qmark=" ",
-                            amark=" "
-                            ).execute()
-    password = inquirer.secret(
-                            message="Masukkan Password baru: ",
-                            qmark=" ",
-                            amark=" "
-                            ).execute()
+    print("=== LOGIN ====")
+    username = input("Masukkan username:")
+    password = input("Masukkan password:")
 
-    if username in user and user[username]["password"]==password:
+    if username == "" or password == "":
+        print("Input tidak boleh kosong!")
+        return None, None
+    
+    if username in user and user[username]["password"] == password:
         print("Login berhasil!")
         return username, user[username]["role"]
     else:
-        print("Username atau password salah.")
+        print("Username atau password salah!")
         return None, None
     
 def register(user):
-    print("=== Register ===")
-    username = inquirer.text(
-                            message="Masukkan Username baru: ",
-                            qmark="📝",
-                            amark="📝"
-                            ).execute()
+    print("=== REGISTER ====")
+    username = input("Masukkan username baru:")
 
-    if username in user:
-        print("Username sudah terdaftar.")
+    if username == "":
+        print("Username tidak boleh kosong!")
         return
     
-    password = inquirer.secret(
-                            message="Masukkan Password baru: ",
-                            qmark="📝",
-                            amark="📝"
-                            ).execute()
-    role = inquirer.select(
-                            message="Masukkan role (superadmin/admin/user): ",
-                            choices=["superadmin", "admin", "user"],
-                            pointer="👉",
-                            qmark="📝",
-                            amark="📝"
-                            ).execute()
+    if username in user:
+        print("Username sudah terdaftar!")
+        return
+    
+    password = input("Masukkan password baru:")
 
+    if password == "":
+        print("Password tidak boleh kosong!")
+        return
+    
+    role = input("Masukkan role (superadmin/admin/user): ")
+
+    if role == "":
+        print("Role tidak boleh kosong!")
+        return
+    
+    if role not in ["superadmin", "admin", "user"]:
+        print("Role tidak valid! Pilihan role: superadmin, admin, user")
+        return
+    
     user[username] = {
-        "username": username,
         "password": password,
         "role": role
     }
+
     print("Registrasi berhasil!")
-        
-        
