@@ -1,6 +1,6 @@
 from prettytable import PrettyTable
 from InquirerPy import inquirer
-from utils import clear
+from utils import clear, catat_log
 
 def menu_akun(usernameLogin, users):
     role_login = users[usernameLogin]["role"]
@@ -26,6 +26,8 @@ def menu_akun(usernameLogin, users):
             for username, data in users.items():
                 tabel.add_row([username, data["password"], data["role"]])
             print(tabel)
+
+            catat_log(usernameLogin, "Melihat daftar user", "-")
             input("\nEnter...")
 
         elif menu_akun == "Tambah user baru":
@@ -64,6 +66,8 @@ def menu_akun(usernameLogin, users):
                 "role": role_baru,
                 "mods": {}
             }
+            catat_log(usernameLogin, "Menambah user baru", usn_baru)
+
             print("User berhasil dibuat!")
             input("\nEnter...")
 
@@ -106,6 +110,8 @@ def menu_akun(usernameLogin, users):
             if role_edit:
                 users[usn_edit]["role"] = role_edit
 
+            catat_log(usernameLogin, "Mengedit user", usn_edit)
+
             print("User berhasil diperbarui!")
             input("\nEnter...")
 
@@ -141,6 +147,9 @@ def menu_akun(usernameLogin, users):
                                                 ).execute()
             if konfirmasi == "YA":
                 del users[user_hapus]
+
+                catat_log(usernameLogin, "Menghapus user", user_hapus)
+                
                 print("User berhasil dihapus.")
                 input("\nEnter...")
             else:
