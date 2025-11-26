@@ -1,6 +1,6 @@
 from prettytable import PrettyTable
 from utils import clear, catat_log
-
+from InquirerPy import inquirer
 
 def tableMod(mods):
     clear()
@@ -33,21 +33,27 @@ def menu_mod(usernameLogin, users):
     while True:
         try:
             clear()
-            print("=== MENU MOD ===")
-            print("1. Lihat daftar mod")
-            print("2. Tambah mod")
-            print("3. Edit mod")
-            print("4. Hapus mod")
-            print("5. Kembali")
-            pilihan = input("Pilih menu: ").strip()
+            
+            pilihan = inquirer.select(message="=== MENU MOD ===",
+                                      choices=["Lihat daftar mod", 
+                                               "Tambah mod",
+                                               "Edit mod",
+                                               "Hapus mod",
+                                               "Kembali",],
+                                      pointer="->",
+                                      qmark=" ",
+                                      amark=" ",
+                                      ).execute()
 
-            if pilihan == "1":
+
+
+            if pilihan == "Lihat daftar mod":
                 clear()
                 tableMod(users[usernameLogin]["mods"])
                 catat_log(usernameLogin, "Melihat daftar mod", "-")
                 input("\nTekan Enter untuk kembali...")
 
-            elif pilihan == "2":
+            elif pilihan == "Tambah mod":
                 clear()
                 print("\n=== TAMBAH MOD ===")
                 nama_mod = input("Nama mod baru: ").strip()
@@ -84,45 +90,71 @@ def menu_mod(usernameLogin, users):
                 except Exception as e:
                     print("Gagal menambah mod:", e)
                     input("Tekan Enter...")
-
-            elif pilihan == "3":
+            
+            elif pilihan == "Edit mod":
                 clear()
                 print("\n=== EDIT MOD ===")
                 tableMod(users[usernameLogin]["mods"])
-                nama_mod = input("\nNama mod yang mau diedit: ").strip()
+
+                nama_mod = input("\nPilih nama mod yang mau diedit: ").strip()
 
                 if nama_mod not in users[usernameLogin]["mods"]:
                     print("Mod tidak ditemukan!")
                     input("Tekan Enter...")
                     continue
 
-                try:
-                    mod = users[usernameLogin]["mods"][nama_mod]
-                    print("Tekan Enter untuk skip (tidak mengubah).")
+                mod = users[usernameLogin]["mods"][nama_mod]
 
-                    versi = input(f"Versi baru ({mod.get('versi','-')}): ").strip() or mod["versi"]
-                    kategori = input(f"Kategori baru ({mod.get('kategori','-')}): ").strip() or mod["kategori"]
-                    ukuran = input(f"Ukuran baru ({mod.get('ukuran','-')}): ").strip() or mod["ukuran"]
-                    deskripsi = input(f"Deskripsi baru ({mod.get('deskripsi','-')}): ").strip() or mod["deskripsi"]
-                    review = input(f"Review baru ({mod.get('review','-')}): ").strip() or mod["review"]
+                while True:
+                    clear()
+                    print(f"=== EDIT MOD: {nama_mod} ===")
+                    print("Pilih bagian yang ingin diubah:")
 
-                    users[usernameLogin]["mods"][nama_mod] = {
-                        "versi": versi,
-                        "kategori": kategori,
-                        "ukuran": ukuran,
-                        "deskripsi": deskripsi,
-                        "review": review
+                    menuEdit = inquirer.select(
+                        message="Bagian yang ingin diubah:",
+                        choices=[
+                            "Versi",
+                            "Kategori",
+                            "Ukuran",
+                            "Deskripsi",
+                            "Review",
+                            "Kembali"
+                        ],
+                        pointer="->",
+                        qmark=" ",
+                        amark=" "
+                    ).execute()
+
+                    if menuEdit == "Kembali":
+                        break
+
+                    dataEdit = {
+                        "Versi": "versi",
+                        "Kategori": "kategori",
+                        "Ukuran": "ukuran",
+                        "Deskripsi": "deskripsi",
+                        "Review": "review"
                     }
 
-                    catat_log(usernameLogin, "Mengedit mod", nama_mod)
-                    print("Mod berhasil diperbarui!")
-                    input("Tekan Enter...")
+                    key = dataEdit[menuEdit]
 
-                except Exception as e:
-                    print("Gagal mengedit mod:", e)
-                    input("Tekan Enter...")
+                    print(f"Nilai sekarang: {mod.get(key, '-')}")
+                    valueBaru = input(f"Masukkan {menuEdit} baru (kosong untuk batal): ").strip()
 
-            elif pilihan == "4":
+                    if not valueBaru:
+                        print("Tidak ada perubahan.")
+                        input("Enter...")
+                        continue
+
+                    # lakukan edit
+                    users[usernameLogin]["mods"][nama_mod][key] = valueBaru
+                    catat_log(usernameLogin, f"Mengedit {key}", nama_mod)
+
+                    print(f"{menuEdit} berhasil diperbarui!")
+                    input("Enter...")
+
+
+            elif pilihan == "Hapus mod":
                 clear()
                 print("\n=== HAPUS MOD ===")
                 tableMod(users[usernameLogin]["mods"])
@@ -140,7 +172,7 @@ def menu_mod(usernameLogin, users):
 
                 input("Tekan Enter...")
 
-            elif pilihan == "5":
+            elif pilihan == "Kembali":
                 print("Kembali ke menu sebelumnya...")
                 break
 
@@ -153,4 +185,5 @@ def menu_mod(usernameLogin, users):
             break
 
         except Exception as e:
-            input("Terjadi kesalahan:", e,"Tekan Enter...")
+                print("Terjadi kesalahan:", e)
+                input("Tekan Enter...")

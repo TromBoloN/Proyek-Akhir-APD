@@ -13,7 +13,7 @@ def menu_akun(usernameLogin, users):
                                             "Edit user",
                                             "Hapus user",
                                             "Kembali"],
-                                    pointer="👉",
+                                    pointer="->",
                                     qmark=" ",
                                     amark=" "
                                     ).execute()
@@ -35,8 +35,8 @@ def menu_akun(usernameLogin, users):
             print("\n=== TAMBAH USER ===")
             usn_baru = inquirer.text(
                             message="Masukkan Username baru: ",
-                            qmark="📝",
-                            amark="📝"
+                            qmark="->",
+                            amark="->"
                             ).execute()
             if usn_baru in users:
                 print("User sudah ada!")
@@ -45,8 +45,8 @@ def menu_akun(usernameLogin, users):
 
             pw_baru = inquirer.secret(
                             message="Masukkan Password baru: ",
-                            qmark="📝",
-                            amark="📝"
+                            qmark="->",
+                            amark="->"
                             ).execute()
 
             if role_login == "admin":
@@ -56,9 +56,9 @@ def menu_akun(usernameLogin, users):
                 role_baru = inquirer.select(
                             message="Masukkan role (superadmin/admin/user): ",
                             choices=["superadmin", "admin", "user"],
-                            pointer="👉",
-                            qmark="📝",
-                            amark="📝"
+                            pointer="->",
+                            qmark="->",
+                            amark="->"
                             ).execute()
 
             users[usn_baru] = {
@@ -94,15 +94,15 @@ def menu_akun(usernameLogin, users):
             print("Kosongkan untuk tidak mengubah.")
             pw_edit = inquirer.secret(
                             message="Masukkan Password baru: ",
-                            qmark="📝",
-                            amark="📝"
+                            qmark="->",
+                            amark="->"
                             ).execute()
             role_edit = inquirer.select(
-                            message="Masukkan role (superadmin/admin/user): ",
-                            choices=["Superadmin", "Admin", "User"],
-                            pointer="👉",
-                            qmark="📝",
-                            amark="📝"
+                            message="Masukkan role: ",
+                            choices=["superadmin", "admin", "user"],
+                            pointer="->",
+                            qmark="->",
+                            amark="->"
                             ).execute() if role_login == "superadmin" else None
 
             if pw_edit:
@@ -141,8 +141,8 @@ def menu_akun(usernameLogin, users):
 
             konfirmasi = inquirer.select(message="Yakin ingin Mengapus User?",
                                                 choices=["YA", "TIDAK"],
-                                                pointer="👉",
-                                                qmark="❓",
+                                                pointer="->",
+                                                qmark="?",
                                                 amark=" "
                                                 ).execute()
             if konfirmasi == "YA":

@@ -12,7 +12,7 @@ while True:
                                 choices=["Login", 
                                         "Register",
                                         "Keluar",],
-                                pointer="👉",
+                                pointer="->",
                                 qmark=" ",
                                 amark=" "
                                 ).execute()
@@ -41,7 +41,7 @@ while True:
                                                     "Menu Mod",
                                                     "Log Aktivitas",
                                                     "Logout",],
-                                            pointer="👉",
+                                            pointer="->",
                                             qmark=" ",
                                             amark=" "
                                             ).execute()
@@ -59,9 +59,9 @@ while True:
                 elif pilihSA == "Logout":
                     konfirmasi = inquirer.select(message="Yakin ingin Logout?",
                                                 choices=["YA", "TIDAK"],
-                                                pointer="👉",
-                                                qmark="❓",
-                                                amark="☑️"
+                                                pointer="->",
+                                                qmark="?",
+                                                amark="V"
                                                 ).execute()
                     if konfirmasi == "YA":
                         print("Logout berhasil.")
@@ -75,7 +75,7 @@ while True:
                                             choices=["Menu Akun", 
                                                     "Logout",
                                                     ],
-                                            pointer="👉",
+                                            pointer="->",
                                             qmark=" ",
                                             amark=" "
                                             ).execute()
@@ -87,8 +87,8 @@ while True:
                 elif pilihanA == "Logout":
                     konfirmasi = inquirer.select(message="Yakin ingin Logout?",
                                                 choices=["YA", "TIDAK"],
-                                                pointer="👉",
-                                                qmark="❓",
+                                                pointer="->",
+                                                qmark="?",
                                                 amark=" "
                                                 ).execute()
                     if konfirmasi == "YA":
@@ -103,7 +103,7 @@ while True:
                                             choices=["Menu Mod", 
                                                     "Logout",
                                                     ],
-                                            pointer="👉",
+                                            pointer="->",
                                             qmark=" ",
                                             amark=" "
                                             ).execute()
@@ -115,8 +115,8 @@ while True:
                 elif pilihanU == "Logout":
                     konfirmasi = inquirer.select(message="Yakin ingin Logout?",
                                                 choices=["YA", "TIDAK"],
-                                                pointer="👉",
-                                                qmark="❓",
+                                                pointer="->",
+                                                qmark="?",
                                                 amark=" "
                                                 ).execute()
                     if konfirmasi == "YA":
