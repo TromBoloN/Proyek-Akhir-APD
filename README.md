@@ -12,7 +12,4 @@ Repositori ini merupakan tempat pengumpulan **Program**, **Flowchart**, dan **La
 | Muhammad Athaillah Cordova| 2509106055  |
 | Ghina Cyntia Ramadhani    | 2509106054  |
 
----
 
-✨ *Kelompok 5 – Inpo Loker*  
-*Algoritma Pemrograman Dasar*
