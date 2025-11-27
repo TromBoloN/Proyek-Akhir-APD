@@ -4,14 +4,14 @@ from data import user
 
 def login(user):
     print("=== LOGIN ====")
-    username = input("Masukkan username:")
-    password = input("Masukkan password:")
-
+    username = input("Masukkan username: ")
+    password = input("Masukkan password: ")
+    
     if username == "" or password == "":
         print("Input tidak boleh kosong!")
         return None, None
     
-    if username in user and user[username]["password"] == password:
+    elif username in user and user[username]["password"] == password:
         print("Login berhasil!")
         return username, user[username]["role"]
     else:
@@ -20,7 +20,7 @@ def login(user):
     
 def register(user):
     print("=== REGISTER ====")
-    username = input("Masukkan username baru:")
+    username = input("Masukkan username baru: ")
 
     if username == "":
         print("Username tidak boleh kosong!")
@@ -30,7 +30,7 @@ def register(user):
         print("Username sudah terdaftar!")
         return
     
-    password = input("Masukkan password baru:")
+    password = input("Masukkan password baru: ")
 
     if password == "":
         print("Password tidak boleh kosong!")

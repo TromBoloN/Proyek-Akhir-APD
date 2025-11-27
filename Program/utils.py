@@ -19,7 +19,7 @@ def tampilkan_log():
         with open("log_aktivitas.csv", "r", encoding="utf-8") as file:
             reader = csv.reader(file)
             data = list(reader)
-
+    
             if len(data) == 0:
                 print("Belum ada aktivitas.")
                 return
