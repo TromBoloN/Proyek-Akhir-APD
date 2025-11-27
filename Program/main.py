@@ -8,6 +8,7 @@ from utils import clear, tampilkan_log
 
 while True:
     clear()
+    #menu utama
     pilihanMenu = inquirer.select(message="=== MENU UTAMA ===",
                                 choices=["Login", 
                                         "Register",
@@ -34,7 +35,7 @@ while True:
         usernameLogin, roleLogin = hasiLogin
         while True:
             clear()
-
+            #menu superadmin
             if roleLogin == "superadmin":
                 pilihSA = inquirer.select(message="=== MENU SUPERADMIN ===",
                                             choices=["Menu Akun", 
@@ -69,7 +70,7 @@ while True:
                     else:
                         print("Logout dibatalkan")
                         input("Enter...")
-
+            #menu admin
             elif roleLogin == "admin":
                 pilihanA = inquirer.select(message="=== MENU ADMIN ===",
                                             choices=["Menu Akun", 
@@ -97,7 +98,7 @@ while True:
                     else:
                         print("Logout dibatalkan")
                         input("Enter...")
-
+            #menu user
             elif roleLogin == "user":
                 pilihanU = inquirer.select(message="=== MENU USER ===",
                                             choices=["Menu Mod", 

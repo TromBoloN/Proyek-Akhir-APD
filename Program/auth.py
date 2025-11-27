@@ -1,7 +1,6 @@
 # Login Function (Ghina)
 
-from data import user
-
+#function buat login
 def login(user):
     print("=== LOGIN ====")
     username = input("Masukkan username: ")
@@ -17,7 +16,8 @@ def login(user):
     else:
         print("Username atau password salah!")
         return None, None
-    
+
+#function buat nambah user baru   
 def register(user):
     print("=== REGISTER ====")
     username = input("Masukkan username baru: ")

@@ -1,10 +1,6 @@
-# 🧠 Proyek Akhir APD – Kelompok 5 (Inpo Loker)
-
-Repositori ini merupakan tempat pengumpulan **Program**, **Flowchart**, dan **Laporan** untuk **Proyek Akhir** mata kuliah **Algoritma Pemrograman Dasar (APD)** oleh **Kelompok 5 – Inpo Loker**.
-
 ---
 
-## 👥 Anggota Kelompok
+## Anggota Kelompok
 
 | Nama                      | NIM         |
 |---------------------------|-------------|

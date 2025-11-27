@@ -2,6 +2,7 @@ from prettytable import PrettyTable
 from utils import clear, catat_log
 from InquirerPy import inquirer
 
+#function untuk nampilin tabel mod
 def tableMod(mods):
     clear()
     print("=== DAFTAR MOD ===")
@@ -25,7 +26,7 @@ def tableMod(mods):
 
     print(tabel)
 
-
+#ffunction menu mod
 def menu_mod(usernameLogin, users):
     if "mods" not in users[usernameLogin]:
         users[usernameLogin]["mods"] = {}
@@ -46,13 +47,13 @@ def menu_mod(usernameLogin, users):
                                       ).execute()
 
 
-
+            #Read
             if pilihan == "Lihat daftar mod":
                 clear()
                 tableMod(users[usernameLogin]["mods"])
                 catat_log(usernameLogin, "Melihat daftar mod", "-")
                 input("\nTekan Enter untuk kembali...")
-
+            #Create
             elif pilihan == "Tambah mod":
                 clear()
                 print("\n=== TAMBAH MOD ===")
@@ -90,7 +91,7 @@ def menu_mod(usernameLogin, users):
                 except Exception as e:
                     print("Gagal menambah mod:", e)
                     input("Tekan Enter...")
-            
+            #Update
             elif pilihan == "Edit mod":
                 clear()
                 print("\n=== EDIT MOD ===")
@@ -153,7 +154,7 @@ def menu_mod(usernameLogin, users):
                     print(f"{menuEdit} berhasil diperbarui!")
                     input("Enter...")
 
-
+            #Delete
             elif pilihan == "Hapus mod":
                 clear()
                 print("\n=== HAPUS MOD ===")

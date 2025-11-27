@@ -1,7 +1,6 @@
 2025-11-24 00:56:31,arif,Melihat daftar mod,-
 2025-11-24 00:56:46,arif,Menambah mod,tes
 2025-11-24 00:56:49,arif,Melihat daftar mod,-
-<<<<<<< HEAD
 2025-11-26 22:45:52,dova,Melihat daftar mod,-
 2025-11-26 22:46:27,dova,Melihat daftar mod,-
 2025-11-26 22:47:06,arif,Melihat daftar mod,-
@@ -22,7 +21,6 @@
 2025-11-26 23:48:32,sp,Menambah user baru,cordova
 2025-11-26 23:48:37,sp,Melihat daftar user,-
 2025-11-26 23:49:40,sp,Mengedit user,cordova
-=======
 2025-11-26 14:02:26,sp,Melihat daftar user,-
 2025-11-26 14:02:41,sp,Menambah user baru,tes
 2025-11-26 14:02:53,sp,Menambah user baru,
@@ -47,4 +45,3 @@
 2025-11-27 17:28:58,.tes,Mengedit review,tes
 2025-11-27 17:29:04,.tes,Menghapus mod,tes
 2025-11-27 17:29:06,.tes,Melihat daftar mod,-
->>>>>>> dfb0be3 (Tambah flowchart dan baikin tampilan di auth input - Arif)

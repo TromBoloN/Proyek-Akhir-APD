@@ -2,6 +2,7 @@ from prettytable import PrettyTable
 from InquirerPy import inquirer
 from utils import clear, catat_log
 
+#function manajemen akun
 def menu_akun(usernameLogin, users):
     role_login = users[usernameLogin]["role"]
 
@@ -17,7 +18,7 @@ def menu_akun(usernameLogin, users):
                                     qmark=" ",
                                     amark=" "
                                     ).execute()
-
+        #Read
         if menu_akun == "Lihat daftar user":
             clear()  
             print("\n=== LIST USER ===")
@@ -29,7 +30,7 @@ def menu_akun(usernameLogin, users):
 
             catat_log(usernameLogin, "Melihat daftar user", "-")
             input("\nEnter...")
-
+        #Create
         elif menu_akun == "Tambah user baru":
             clear()
             print("\n=== TAMBAH USER ===")
@@ -70,7 +71,7 @@ def menu_akun(usernameLogin, users):
 
             print("User berhasil dibuat!")
             input("\nEnter...")
-
+        #Update
         elif menu_akun == "Edit user":
             clear()
             print("\n=== EDIT USER ===" "\n")
@@ -114,7 +115,7 @@ def menu_akun(usernameLogin, users):
 
             print("User berhasil diperbarui!")
             input("\nEnter...")
-
+        #Delete
         elif menu_akun == "Hapus user":
             clear()
             print("\n=== HAPUS USER ===" "\n")
